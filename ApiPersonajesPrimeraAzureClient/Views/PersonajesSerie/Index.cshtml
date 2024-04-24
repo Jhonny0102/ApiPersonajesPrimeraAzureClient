@@ -1,0 +1,69 @@
+﻿@model IEnumerable<ApiPersonajesAzureClient.Models.PersonajeSerie>
+
+@{
+    ViewData["Title"] = "Index";
+    List<string> series = ViewData["SERIES"] as List<string>;
+}
+
+<h1>Index</h1>
+
+<p class="btn btn-outline-info">
+    <a asp-action="Create">Create New</a>
+</p>
+
+<br />
+<form method="post">
+    <label>Serie: </label>
+    <select name="serie" class="form-control">
+        @foreach (string serie in series)
+        {
+            <option value="@serie">@serie</option>
+        }
+    </select>
+    <button class="btn btn-outline-success">
+        Buscar
+    </button>
+</form>
+<br />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IdPersonaje)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Imagen)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Serie)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdPersonaje)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Imagen)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Serie)
+            </td>
+            <td>
+                <a asp-controller="PersonajeSerie" asp-action="Editar" class="btn btn-outline-warning">Editar</a>
+                    <a asp-controller="PersonajeSerie" asp-action="Eliminar" class="btn btn-outline-danger">Eliminar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
